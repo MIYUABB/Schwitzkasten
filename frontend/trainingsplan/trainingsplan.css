@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+.container {
+    padding: 10px 10%;
+}
+
+#header {
+    background-color: black;
+    padding: 20px 0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+    object-fit: contain;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 10px 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #00B5E2;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.4s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav .fas {
+    display: none;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 40px 0 20px;
+    color: #00B5E2;
+}
+
+.plans-container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-bottom: 40px;
+}
+
+.plan-box {
+    background-color: #1e1e1e;
+    padding: 15px 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s;
+    border: 1px solid #333;
+}
+
+.plan-box:hover {
+    background-color: #2a2a2a;
+}
+
+@media only screen and (max-width: 600px) {
+    nav .fas {
+        display: block;
+    }
+
+    nav ul {
+        background: #00B5E2;
+        position: fixed;
+        top: 0;
+        right: -200px;
+        width: 200px;
+        height: 100vh;
+        padding-top: 50px;
+        z-index: 2;
+        transition: right 0.5s;
+        flex-direction: column;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 25px;
+    }
+
+    nav ul .fas {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        cursor: pointer;
+    }
+}
+
+
+

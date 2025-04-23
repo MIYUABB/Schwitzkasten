@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Schwitzkasten – Homepage</title>
+  <link rel="stylesheet" href="homepage.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/5734caa0fc.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- Navigation -->
+<div id="header">
+  <div class="container nav-container">
+    <nav>
+      <img src="" alt="logo" class="logo" />
+      <ul id="sidemenu">
+        <li><a href="#header">Home</a></li>
+        <li><a href="../trainingsplan/index.html">Trainingspläne</a></li>
+        <li><a href="../tagebuch/index.html">Tagebuch</a></li>
+        <li><a href="../geraete_uebungen/index.html">Geräte und Übungen</a></li>
+        <i class="fas fa-times" onclick="closemenu()"></i>
+      </ul>
+      <i class="fas fa-bars" onclick="openmenu()"></i>
+    </nav>
+  </div>
+</div>
+
+<!-- Titel -->
+<div class="container">
+  <h1 class="main-title">Schwitzkasten</h1>
+</div>
+
+<!-- About -->
+<div id="about">
+  <div class="container about-row">
+    <div class="about-img">
+      <img src="gym.jpg" alt="Gym" />
+    </div>
+    <div class="about-text">
+      <h2>About</h2>
+      <p>
+        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
+        Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Lehrer-Tabelle (nur für Lehrer) -->
+<div class="container" id="verhaltensfreigabe" style="display: none;">
+  <h2 class="sub-title">Verhaltensvereinbarung</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Bestätigt</th>
+      <th>Freigabe</th>
+      <th>Aktion</th>
+    </tr>
+    </thead>
+    <tbody id="userTable"></tbody>
+  </table>
+</div>
+
+<!-- Regeln -->
+<div id="regeln">
+  <div class="container">
+    <h2 class="sub-title">Regeln</h2>
+    <div class="regeln-list">
+      <div><i class="fa-solid fa-scale-balanced"></i><h3>1. Regel</h3><p>Keine Strassenschuhe in der Halle.</p></div>
+      <div><i class="fa-solid fa-scale-balanced"></i><h3>2. Regel</h3><p>Turngeräte nur unter Aufsicht benutzen.</p></div>
+      <div><i class="fa-solid fa-scale-balanced"></i><h3>3. Regel</h3><p>Respektvoller Umgang miteinander.</p></div>
+      <div><i class="fa-solid fa-scale-balanced"></i><h3>4. Regel</h3><p>Geräte nach dem Gebrauch zurücklegen.</p></div>
+      <div><i class="fa-solid fa-scale-balanced"></i><h3>5. Regel</h3><p>Keine Rennen oder Rempeleien in der Halle.</p></div>
+      <div><i class="fa-solid fa-scale-balanced"></i><h3>6. Regel</h3><p>Den Anweisungen der Lehrperson ist Folge zu leisten.</p></div>
+    </div>
+  </div>
+</div>
+
+<script src="homepage.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geräte und Übungen</title>
+  <link rel="stylesheet" href="geraete_uebungen.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/5734caa0fc.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- Navigation -->
+<div id="header">
+  <div class="container">
+    <nav>
+      <img src="../../assets/logo.png" alt="logo" class="logo" />
+      <ul id="sidemenu">
+        <li><a href="../homepage/index.html">Home</a></li>
+        <li><a href="../trainingsplan/index.html">Trainingspläne</a></li>
+        <li><a href="../tagebuch/index.html">Tagebuch</a></li>
+        <li><a href="index.html">Geräte und Übungen</a></li>
+        <i class="fas fa-times" onclick="closemenu()"></i>
+      </ul>
+      <i class="fas fa-bars" onclick="openmenu()"></i>
+    </nav>
+  </div>
+</div>
+
+<!-- Titel -->
+<h1 class="title">Geräte und Übungen</h1>
+
+<!-- Auswahlkarten -->
+<div class="cards-container">
+  <a href="mit_gewicht.html" class="card">
+    <img src="images/gewicht_icon.png" alt="Mit Gewichten" />
+    <p>Mit Gewichten</p>
+  </a>
+
+  <a href="ohne_gewicht.html" class="card">
+    <img src="images/koerper_icon.png" alt="Mit Körpergewicht" />
+    <p>Mit Körpergewicht</p>
+  </a>
+</div>
+
+<!-- Menü für Mobile -->
+<script>
+  function openmenu() {
+    document.getElementById("sidemenu").style.right = "0";
+  }
+  function closemenu() {
+    document.getElementById("sidemenu").style.right = "-200px";
+  }
+</script>
+
+</body>
+</html>
