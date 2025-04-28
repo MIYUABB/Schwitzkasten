@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+.container {
+    padding: 10px 10%;
+}
+
+#header {
+    background-color: black;
+    padding: 20px 0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 10px 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #00B5E2;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.4s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav .fas {
+    display: none;
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 40px 0 30px;
+    color: #00B5E2;
+}
+
+.main-content {
+    display: flex;
+    gap: 30px;
+    margin: 20px auto;
+    width: 90%;
+    flex-wrap: wrap;
+}
+
+.left-box {
+    flex: 1;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.image-placeholder {
+    padding: 30px;
+}
+
+.muskel-label {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: #ccc;
+}
+
+.right-box {
+    flex: 2;
+}
+
+.right-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #00B5E2;
+}
+
+.right-box p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem;
+    color: white;
+}
+
+.video-section {
+    background-color: #1e1e1e;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 30px auto;
+    text-align: center;
+    width: 90%;
+}
+
+.table-container {
+    width: 90%;
+    margin: 20px auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1e1e1e;
+    color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #333;
+    text-align: center;
+    font-size: 1rem;
+}
+
+thead {
+    background-color: #2a2a2a;
+    font-weight: bold;
+}
+
+.weiter-button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 30px 5%;
+}
+
+.weiter-button {
+    background-color: #00B5E2;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.weiter-button:hover {
+    background-color: #00B5E2;
+}
+
+.tagebuch-eintrag {
+    width: 90%;
+    margin: 30px auto;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.tagebuch-eintrag h3 {
+    color: #00B5E2;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.tagebuch-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.tagebuch-form input {
+    flex: 1;
+    min-width: 180px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}

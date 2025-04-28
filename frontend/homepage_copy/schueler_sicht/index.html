@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schwitzkasten</title>
+  <link rel="stylesheet" href='homepage.css'>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/5734caa0fc.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div id="header">
+  <div class="container">
+    <nav>
+      <img src="" alt="logo" class="logo">
+      <ul id="sidemenu">
+        <li><a href="#header">Home</a></li>
+        <li><a href='../../trainingsplan/index.html'>Trainingspläne</a></li>
+        <li><a href='../../tagebuch/index.html'>Tagebuch</a></li>
+        <li><a href="../../geraete_uebungen/index.html">Geräte und Übungen</a></li>
+        <i class="fas fa-times" onclick="closemenu()"></i>
+      </ul>
+      <i class="fas fa-bars" onclick="openmenu()"></i>
+    </nav>
+    <div class="header-text">
+      <p>Kantonsschule Hottingen</p>
+      <h1>Hallo, willkommen beim <span>Schwitzkasten</span></h1>
+    </div>
+  </div>
+</div>
+
+<div id="about">
+  <div class="container">
+    <div class="row">
+      <div class="about-col-1">
+        <img src='gym.jpg' alt="user">
+      </div>
+      <div class="about-col-2">
+        <h1 class="sub-title">About</h1>
+        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="regeln">
+  <div class="container">
+    <h1 class="sub-title">Regeln</h1>
+    <div class="regeln-list">
+      <div>
+        <i class="fa-solid fa-scale-balanced"></i>
+        <h2>1. Regel</h2>
+        <p>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 ...</p>
+        <a href="#" target="_blank">Learn more</a>
+      </div>
+      <div>
+        <i class="fa-solid fa-scale-balanced"></i>
+        <h2>2. Regel</h2>
+        <p>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 ...</p>
+        <a href="#" target="_blank">Learn more</a>
+      </div>
+      <div>
+        <i class="fa-solid fa-scale-balanced"></i>
+        <h2>3. Regel</h2>
+        <p>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 ...</p>
+        <a href="#" target="_blank">Learn more</a>
+      </div>
+      <div>
+        <i class="fa-solid fa-scale-balanced"></i>
+        <h2>4. Regel</h2>
+        <p>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 ...</p>
+        <a href="#" target="_blank">Learn more</a>
+      </div>
+      <div>
+        <i class="fa-solid fa-scale-balanced"></i>
+        <h2>5. Regel</h2>
+        <p>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 ...</p>
+        <a href="#" target="_blank">Learn more</a>
+      </div>
+      <div>
+        <i class="fa-solid fa-scale-balanced"></i>
+        <h2>6. Regel</h2>
+        <p>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 ...</p>
+        <a href="#" target="_blank">Learn more</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let sidemenu = document.getElementById('sidemenu');
+  function openmenu() {
+    sidemenu.style.right = '0';
+  }
+  function closemenu() {
+    sidemenu.style.right = '-200px';
+  }
+</script>
+
+</body>
+</html>

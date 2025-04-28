@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+.container {
+    padding: 10px 10%;
+}
+
+#header {
+    background-color: black;
+    padding: 20px 0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 10px 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #00B5E2;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.4s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav .fas {
+    display: none;
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 40px 0 30px;
+    color: #00B5E2;
+}
+
+.main-content {
+    display: flex;
+    gap: 30px;
+    margin: 20px auto;
+    width: 90%;
+    flex-wrap: wrap;
+}
+
+.left-box {
+    flex: 1;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.uebung-bild {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.muskel-label {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: #ccc;
+}
+
+.right-box {
+    flex: 2;
+}
+
+.right-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #00B5E2;
+}
+
+.right-box p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem;
+    color: white;
+}
+
+.video-section {
+    background-color: #1e1e1e;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 40px auto;
+    width: 90%;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tagebuch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/5734caa0fc.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="tagebuch.css" />
+</head>
+<body>
+
+<div id="header">
+  <div class="container">
+    <nav>
+      <img src="" alt="logo" class="logo">
+      <ul id="sidemenu">
+        <li><a href="../homepage/index.html">Home</a></li>
+        <li><a href="../trainingsplan/index.html">Trainingspläne</a></li>
+        <li><a href="index.html">Tagebuch</a></li>
+        <li><a href="../geraete_uebungen/index.html">Geräte und Übungen</a></li>
+        <i class="fas fa-times" onclick="closemenu()"></i>
+      </ul>
+      <i class="fas fa-bars" onclick="openmenu()"></i>
+    </nav>
+  </div>
+</div>
+
+<div class="title">Tagebuch</div>
+
+<div class="controls">
+  <button id="addBtn" onclick="showForm()">+</button>
+  <input type="text" id="searchInput" placeholder="Suche" onkeyup="searchTable()" />
+  <input type="date" id="dateFilter" onchange="filterByDate()" />
+</div>
+
+<table id="trainingTable">
+  <thead>
+  <tr>
+    <th>Datum</th>
+    <th>Dauer</th>
+    <th>Übung</th>
+    <th>Anz. Sets</th>
+    <th>Gewicht</th>
+    <th>Wiederholungen</th>
+    <th>Notizen</th>
+    <th>Aktionen</th>
+  </tr>
+  </thead>
+  <tbody id="tableBody"></tbody>
+</table>
+
+<div class="form-row" id="entryForm" style="display: none;">
+  <input type="date" id="datum" />
+  <input type="text" id="dauer" placeholder="Dauer" />
+  <input type="text" id="übung" placeholder="Übung" />
+  <input type="number" id="sets" placeholder="Sets" />
+  <input type="number" id="gewicht" placeholder="Gewicht" />
+  <input type="number" id="wh" placeholder="Wdh." />
+  <input type="text" id="notizen" placeholder="Notizen" />
+  <button class="hinzufügen" onclick="addEntry()">Hinzufügen</button>
+</div>
+
+<script>
+  let sidemenu = document.getElementById("sidemenu");
+  function openmenu() { sidemenu.style.right = "0"; }
+  function closemenu() { sidemenu.style.right = "-200px"; }
+
+
+  const isTeacher = false; // Hier umschalten: true = Lehrer / false = Schüler
+
+  window.onload = () => {
+    if (isTeacher) {
+      document.getElementById("addBtn").style.display = "none";
+      document.getElementById("entryForm").style.display = "none";
+    }
+  };
+</script>
+<script src="tagebuch.js"></script>
+</body>
+</html>

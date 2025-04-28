@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trainingsplan – Übung</title>
+  <link rel="stylesheet" href='uebung.css' />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/5734caa0fc.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- Navigation -->
+<div id="header">
+  <div class="container">
+    <nav>
+      <img src="" alt="logo" class="logo" />
+      <ul id="sidemenu">
+        <li><a href="../homepage/index.html">Home</a></li>
+        <li><a href="index.html">Trainingspläne</a></li>
+        <li><a href="../tagebuch/index.html">Tagebuch</a></li>
+        <li><a href="../geraete_uebungen/index.html">Geräte und Übungen</a></li>
+        <i class="fas fa-times" onclick="closemenu()"></i>
+      </ul>
+      <i class="fas fa-bars" onclick="openmenu()"></i>
+    </nav>
+  </div>
+</div>
+
+<h1 class="title">Übung 1</h1>
+
+<div class="main-content">
+  <div class="left-box">
+    <div class="image-placeholder">
+      <i class="fa-regular fa-image fa-4x"></i>
+    </div>
+    <p class="muskel-label">(Welche Muskelgruppe fokussiert wird)</p>
+  </div>
+
+  <div class="right-box">
+    <h2>Übung XY</h2>
+    <p>Beschreibung der Übung...</p>
+    <div class="location">
+      <i class="fa-solid fa-location-dot"></i>
+      Ort
+    </div>
+  </div>
+</div>
+
+<div class="video-section">
+  <i class="fa-solid fa-clapperboard fa-4x"></i>
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+    <tr>
+      <th>Anz. Sets</th>
+      <th>Pause</th>
+      <th>Wiederholungen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>4</td>
+      <td>60s</td>
+      <td>12</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Tagebuch-Eintrag -->
+<div class="tagebuch-eintrag">
+  <h3>Tagebucheintrag</h3>
+  <div class="tagebuch-form">
+    <input type="number" id="sets" placeholder="Sets gemacht" />
+    <input type="number" id="wdh" placeholder="Wiederholungen gemacht" />
+    <input type="number" id="gewicht" placeholder="Gewicht (kg)" />
+    <input type="text" id="notizen" placeholder="Notizen" />
+  </div>
+</div>
+
+<!-- Weiter-Button -->
+<div class="weiter-button-container">
+  <button class="weiter-button">Weiter</button>
+</div>
+
+<script src='uebung.js'></script>
+<script>
+  let sidemenu = document.getElementById("sidemenu");
+  function openmenu() {
+    sidemenu.style.right = "0";
+  }
+  function closemenu() {
+    sidemenu.style.right = "-200px";
+  }
+</script>
+
+</body>
+</html>
