@@ -2,14 +2,15 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Geräte mit Zusatzgewichten</title>
-  <link rel="stylesheet" href="mit_gewicht.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Übung – Erklärung</title>
+  <link rel="stylesheet" href="uebung_erklaerung.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/5734caa0fc.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
+<!-- Navigation -->
 <div id="header">
   <div class="container">
     <nav>
@@ -18,7 +19,7 @@
         <li><a href="../homepage/index.html">Home</a></li>
         <li><a href="../trainingsplan/index.html">Trainingspläne</a></li>
         <li><a href="../tagebuch/index.html">Tagebuch</a></li>
-        <li><a href="./index.html">Geräte und Übungen</a></li>
+        <li><a href="index.html">Geräte und Übungen</a></li>
         <i class="fas fa-times" onclick="closemenu()"></i>
       </ul>
       <i class="fas fa-bars" onclick="openmenu()"></i>
@@ -26,24 +27,28 @@
   </div>
 </div>
 
-<h1 class="title">Geräte mit Zusatzgewichten</h1>
+<h1 class="title">Übung XY</h1>
 
-<div class="cards-container">
-  <div class="card">
-    <img src="../assets/gewicht1.png" alt="Übung 1" />
-    <p>Mit Gewichten Übung 1</p>
-    <a href="uebung_erklaerung.html" class="erklaerung-button">Zur Erklärung →</a>
+<div class="main-content">
+  <div class="left-box">
+    <img src="../assets/uebung_demo.png" alt="Übung" class="uebung-bild"/>
+    <p class="muskel-label">Fokussierte Muskelgruppe</p>
   </div>
-  <div class="card">
-    <img src="../assets/gewicht2.png" alt="Übung 2" />
-    <p>Mit Gewichten Übung 2</p>
-    <a href="uebung_erklaerung.html" class="erklaerung-button">Zur Erklärung →</a>
+
+  <div class="right-box">
+    <h2>Kurze Beschreibung</h2>
+    <p>Dies ist eine detaillierte Beschreibung der Übung, inklusive Durchführungshinweisen, Haltung, Tipps usw.</p>
+    <div class="location">
+      <i class="fa-solid fa-location-dot"></i> Ort: Fitnessraum A
+    </div>
   </div>
-  <div class="card">
-    <img src="../assets/gewicht3.png" alt="Übung 3" />
-    <p>Mit Gewichten Übung 3</p>
-    <a href="uebung_erklaerung.html" class="erklaerung-button">Zur Erklärung →</a>
-  </div>
+</div>
+
+<div class="video-section">
+  <video controls width="100%">
+    <source src="../assets/uebung_demo.mp4" type="video/mp4" />
+    Dein Browser unterstützt kein Video.
+  </video>
 </div>
 
 <script>
