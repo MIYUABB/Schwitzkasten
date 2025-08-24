@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trainingsplan – Detail</title>
+  <link rel="stylesheet" href='detail.css' />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/5734caa0fc.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header id="header">
+  <div class="container">
+    <nav>
+      <img src="../../assets/logo.png" alt="logo" class="logo" />
+      <ul id="sidemenu">
+        <li><a href='../homepage/index.html'>Home</a></li>
+        <li><a href='index.html'>Trainingspläne</a></li>
+        <li><a href='../tagebuch/index.html'>Tagebuch</a></li>
+        <li><a href='../geraete_uebungen/index.html'>Geräte und Übungen</a></li>
+        <i class="fas fa-times" onclick="closemenu()"></i>
+      </ul>
+      <i class="fas fa-bars" onclick="openmenu()"></i>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h1 class="page-title">Trainingsplan XY</h1>
+
+  <div class="table-container">
+    <table class="plan-table" aria-label="Planübersicht">
+      <colgroup>
+        <col style="width:30%">
+        <col style="width:20%">
+        <col style="width:50%">
+      </colgroup>
+      <thead>
+      <tr>
+        <th>Muskelgruppen</th>
+        <th>Dauer</th>
+        <th>Beschreibung</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td id="tg-muskel">Brust, Rücken, Beine, Schultern, Core</td>
+        <td id="tg-dauer">3 Tage/Woche, 45–60&nbsp;min</td>
+        <td id="tg-beschr">Ausgewogener Ganzkörper-Plan mit Fokus auf Grundübungen.</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="actions">
+    <a id="startBtn" class="primary-btn" href='uebung.html'><i class="fas fa-play"></i> Training starten</a>
+    <a class="ghost-btn" href='index.html'><i class="fas fa-arrow-left"></i> Zurück</a>
+  </div>
+</main>
+
+<script src='detail.js'></script>
+</body>
+</html>

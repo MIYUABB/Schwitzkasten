@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Verhaltensvereinbarung</title>
+  <link rel="stylesheet" href='verhaltensvereinbarung.css' />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/5734caa0fc.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header id="header">
+  <div class="container">
+    <nav>
+      <img src="../../assets/logo.png" alt="logo" class="logo" />
+      <ul id="sidemenu">
+        <li><a href='../homepage/index.html'>Home</a></li>
+        <li><a href='../trainingsplan/index.html'>Trainingspläne</a></li>
+        <li><a href='../tagebuch/index.html'>Tagebuch</a></li>
+        <li><a href='../geraete_uebungen/index.html'>Geräte und Übungen</a></li>
+        <i class="fas fa-times" onclick="closemenu()"></i>
+      </ul>
+      <i class="fas fa-bars" onclick="openmenu()"></i>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="content">
+    <h1 class="page-title">Verhaltensvereinbarung</h1>
+
+    <div id="statusChip" class="status-chip" hidden>
+      <i class="fas fa-check-circle"></i> Bereits akzeptiert
+    </div>
+
+    <section class="card">
+      <h2>1. Rücksicht &amp; Sicherheit</h2>
+      <ul>
+        <li>Geräte sorgfältig benutzen und nach der Nutzung ordnungsgemäß zurückstellen.</li>
+        <li>Eigene Grenzen respektieren, auf <b>korrekte Ausführung</b> achten und andere nicht gefährden.</li>
+        <li>Defekte oder Unstimmigkeiten sofort einer Lehrperson melden.</li>
+      </ul>
+
+      <h2>2. Ordnung &amp; Hygiene</h2>
+      <ul>
+        <li>Saubere Hallen-/Sportschuhe tragen, Handtuch verwenden.</li>
+        <li>Geräte und Flächen nach der Nutzung <b>desinfizieren/reinigen</b>.</li>
+        <li>Wasserflaschen erlaubt, Glasflaschen verboten. Essen im Kraftraum ist nicht gestattet.</li>
+      </ul>
+
+      <h2>3. Verhalten</h2>
+      <ul>
+        <li>Respektvoller Umgang miteinander; keine Beleidigungen oder Störungen des Unterrichts.</li>
+        <li>Musik nur mit Kopfhörern und angemessener Lautstärke.</li>
+        <li>Mobiltelefone nur nach Absprache mit der Lehrperson.</li>
+      </ul>
+
+      <h2>4. Haftung &amp; Gesundheit</h2>
+      <ul>
+        <li>Training erfolgt eigenverantwortlich; gesundheitliche Beschwerden sofort mitteilen.</li>
+        <li>Schmuck und lose Gegenstände vor Beginn ablegen.</li>
+        <li>Bei Verstößen können Nutzungsrechte temporär entzogen werden.</li>
+      </ul>
+
+      <div class="accept-box">
+        <label class="checkbox">
+          <input type="checkbox" id="agreeChk" />
+          <span>Ich habe die Verhaltensvereinbarung gelesen und akzeptiere sie.</span>
+        </label>
+
+        <div class="actions">
+
+          <button id="saveBtn" class="primary-btn" disabled>
+            <i class="fas fa-save"></i> Zustimmen &amp; speichern
+          </button>
+        </div>
+        <small class="hint">Die Zustimmung wird lokal gespeichert und beim nächsten Besuch angezeigt.</small>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src='verhaltensvereinbarung.js'></script>
+</body>
+</html>

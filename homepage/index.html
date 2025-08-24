@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homepage</title>
+  <link rel="stylesheet" href='homepage.css' />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/5734caa0fc.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div id="header">
+  <div class="container">
+    <nav>
+      <img src="../../assets/logo.png" alt="logo" class="logo" />
+      <ul id="sidemenu">
+        <li><a href="../homepage/index.html">Home</a></li>
+        <li><a href='../trainingsplan/index.html'>Trainingspläne</a></li>
+        <li><a href='../tagebuch/index.html'>Tagebuch</a></li>
+        <li><a href='../geraete_uebungen/index.html'>Geräte und Übungen</a></li>
+        <i class="fas fa-times" onclick="closemenu()"></i>
+      </ul>
+      <i class="fas fa-bars" onclick="openmenu()"></i>
+    </nav>
+  </div>
+</div>
+
+<div class="container header-text">
+  <h1>Willkommen im Schwitzkasten</h1>
+  <p>Deine Fitnessplattform für Trainingspläne, Tagebuch, Geräte und Übungen.</p>
+</div>
+
+<div id="about" class="container">
+  <div class="row">
+    <div class="about-col-1">
+      <img src="../../assets/platzhalter.gif" alt="Über uns Bild" />
+    </div>
+    <div class="about-col-2">
+      <h2 class="sub-title">Über Uns</h2>
+      <p>
+      <p>Unser Schul-Gym bietet dir alles, was du für ein strukturiertes und effektives Training brauchst. Im Gerätebereich findest du klassische Kraft- und Ausdauergeräte, mit denen du gezielt an einzelnen Muskelgruppen arbeiten kannst.
+        In der Box trainierst du ohne Maschinen, hier stehen funktionelle Übungen mit dem eigenen Körpergewicht im Mittelpunkt. Mit TRX-Bändern, Kettlebells oder einfachen Bodyweight-Übungen stärkst du Kraft, Stabilität und Beweglichkeit.</p>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="regeln" class="container">
+  <h2 class="sub-title">Regeln</h2>
+  <div class="regeln-list">
+    <div class="card">
+      <div>
+        <h3>Sorgfalt und Sicherheit</h3>
+        <p>Geräte sachgerecht verwenden und nach Nutzung in ordentlichem Zustand hinterlassen.
+          Achte auf eine saubere Ausführung und überschätze dich nicht.
+          Defekte oder Probleme sofort der Lehrperson melden.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div>
+        <h3>Ordnung und Hygiene</h3>
+        <p>Ein Handtuch benutzen und Geräte nach Gebrauch reinigen.
+          Hanteln, Matten, TRX-Bänder und Zubehör immer an den vorgesehenen Platz zurücklegen.
+          Nur verschließbare Trinkflaschen verwenden (keine Glasflaschen).</p>
+      </div>
+    </div>
+    <div class="card">
+      <div>
+        <h3>Respekt und Fairness</h3>
+        <p>Rücksicht auf Mitschülerinnen und Mitschüler nehmen. Geräte nicht unnötig blockieren, Übungen fair teilen.
+          Keine Beleidigungen, angemessene Lautstärke, Musik nur mit Kopfhörern.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div>
+        <h3>Gesundheit und Verantwortung</h3>
+        <p>Trainiere nur, wenn du dich fit fühlst. Beschwerden sofort melden und im Zweifel pausieren. Beachte die Hinweise deiner Lehrperson.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="homepage.js"></script>
+</body>
+</html>

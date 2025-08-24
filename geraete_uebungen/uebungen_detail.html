@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Übungsdetail</title>
+  <link rel="stylesheet" href='uebungen_detail.css' />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/5734caa0fc.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header id="header">
+  <div class="container">
+    <nav>
+      <img src="../../assets/logo.png" alt="logo" class="logo" />
+      <ul id="sidemenu">
+        <li><a href='../homepage/index.html'>Home</a></li>
+        <li><a href='../trainingsplan/index.html'>Trainingspläne</a></li>
+        <li><a href='../tagebuch/index.html'>Tagebuch</a></li>
+        <li><a href='index.html'>Geräte und Übungen</a></li>
+        <i class="fas fa-times" onclick="closemenu()"></i>
+      </ul>
+      <i class="fas fa-bars" onclick="openmenu()"></i>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h1 id="uebungsName" class="page-title">Übungstitel</h1>
+
+  <section class="detail-grid">
+
+    <div class="media-column">
+      <figure class="card media-box">
+        <div class="media-inner">
+          <i class="fas fa-clapperboard media-placeholder" aria-hidden="true"></i>
+          <img id="uebungGif" src="../../assets/platzhalter.gif" alt="Übungsanimation" />
+        </div>
+        <figcaption class="media-caption">(Wird hier in einem GIF gezeigt)</figcaption>
+      </figure>
+
+      <figure class="card media-box">
+        <div class="media-inner">
+          <i class="fas fa-image media-placeholder" aria-hidden="true"></i>
+          <img id="geraetBild" src="../../assets/platzhalter_bild.png" alt="Bild der Maschine" />
+        </div>
+        <figcaption class="media-caption">(Hier wird ein Bild von der Maschine gezeigt)</figcaption>
+      </figure>
+    </div>
+
+    <article class="text-column">
+      <div class="card info-card">
+        <div class="pill" id="muskelgruppePill">
+          <i class="fas fa-dumbbell"></i>
+          <span id="muskelgruppeText">Muskelgruppe</span>
+        </div>
+
+        <h2 id="uebungTitel" class="exercise-title">Titel</h2>
+        <p id="uebungBeschreibung" class="exercise-desc">
+        </p>
+
+        <div class="location">
+          <i class="fas fa-location-dot"></i>
+          <div>
+            <h3>Standort</h3>
+            <p id="uebungStandort"></p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <button class="back-button" onclick="goBack()">Zurück zu den Übungen</button>
+</main>
+
+<script src='uebungen_detail.js'></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Training – Übung</title>
+  <link rel="stylesheet" href='uebung.css' />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/5734caa0fc.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header id="header">
+  <div class="container">
+    <nav>
+      <img src="../../assets/logo.png" alt="logo" class="logo" />
+      <ul id="sidemenu">
+        <li><a href='../homepage/index.html'>Home</a></li>
+        <li><a href='index.html'>Trainingspläne</a></li>
+        <li><a href='../geraete_uebungen/index.html'>Geräte und Übungen</a></li>
+        <i class="fas fa-times" onclick="closemenu()"></i>
+      </ul>
+      <i class="fas fa-bars" onclick="openmenu()"></i>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="progress">
+    <span id="progressText">Übung 1 von X</span>
+  </div>
+
+  <section class="detail-grid">
+    <div class="media-column">
+      <div class="media-box">
+        <div class="media-inner">
+          <img id="uebungGif" src="../../assets/platzhalter.gif" alt="Übungs-GIF" />
+        </div>
+        <div class="media-caption">Bewegungsausführung</div>
+      </div>
+    </div>
+
+    <div class="text-column">
+      <div class="info-card">
+        <div class="pill"><i class="fas fa-dumbbell"></i><span id="muskelgruppe">Muskelgruppe</span></div>
+        <h2 class="exercise-title" id="uebungsName">Übungstitel</h2>
+        <p class="exercise-desc" id="beschreibung">Beschreibung</p>
+        <div class="location">
+          <i class="fas fa-location-dot"></i>
+          <div>
+            <h3>Gerät / Standort</h3>
+            <p id="standort">—</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="prescription">
+    <h3>Vorgaben</h3>
+    <div class="presc-wrap">
+      <table class="presc-table" aria-label="Vorgaben für diese Übung">
+        <thead>
+        <tr>
+          <th>Sätze</th>
+          <th>Wiederholungen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td id="vorgabeSaetze">—</td>
+          <td id="vorgabeWdh">—</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sets">
+    <div class="sets-head">
+      <h3>Sätze protokollieren</h3>
+      <button id="addSetBtn" class="secondary-btn"><i class="fas fa-plus"></i> Satz hinzufügen</button>
+    </div>
+
+    <div class="sets-table-wrap">
+      <table class="sets-table" aria-label="Protokollierte Sätze">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Gewicht (kg)</th>
+          <th>Wdh.</th>
+          <th class="hide-sm">Notiz</th>
+          <th>Aktion</th>
+        </tr>
+        </thead>
+        <tbody id="setsBody">
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="actions">
+    <button id="prevBtn" class="ghost-btn"><i class="fas fa-arrow-left"></i> Zurück</button>
+    <button id="saveBtn" class="primary-btn"><i class="fas fa-save"></i> Speichern</button>
+    <button id="nextBtn" class="primary-btn">Weiter <i class="fas fa-arrow-right"></i></button>
+  </div>
+
+</main>
+
+<script src='uebung.js'></script>
+</body>
+</html>

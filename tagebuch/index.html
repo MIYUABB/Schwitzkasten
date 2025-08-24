@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tagebuch</title>
+  <link rel="stylesheet" href='tagebuch.css' />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/5734caa0fc.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header id="header">
+  <div class="container">
+    <nav>
+      <img src="../../assets/logo.png" alt="logo" class="logo" />
+      <ul id="sidemenu">
+        <li><a href='../homepage/index.html'>Home</a></li>
+        <li><a href='../trainingsplan/index.html'>Trainingspläne</a></li>
+        <li><a href="./index.html">Tagebuch</a></li>
+        <li><a href='../geraete_uebungen/index.html'>Geräte und Übungen</a></li>
+        <i class="fas fa-times" onclick="closemenu()"></i>
+      </ul>
+      <i class="fas fa-bars" onclick="openmenu()"></i>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h1 class="page-title">Tagebuch</h1>
+
+  <section class="filters">
+    <div class="filter-row">
+      <div class="filter">
+        <label for="dateFrom">Datum von</label>
+        <input type="date" id="dateFrom" />
+      </div>
+      <div class="filter">
+        <label for="dateTo">Datum bis</label>
+        <input type="date" id="dateTo" />
+      </div>
+      <div class="filter">
+        <label for="planSelect">Trainingsplan</label>
+        <select id="planSelect">
+          <option value="">Alle</option>
+        </select>
+      </div>
+      <div class="filter">
+        <label for="muscleSelect">Muskelgruppe</label>
+        <select id="muscleSelect">
+          <option value="">Alle</option>
+        </select>
+      </div>
+    </div>
+    <div class="filter-actions">
+      <button id="resetBtn" class="ghost-btn"><i class="fas fa-rotate"></i> Filter zurücksetzen</button>
+    </div>
+  </section>
+
+  <section class="table-wrap">
+    <table class="diary-table" aria-label="Tagebuch-Einträge">
+      <thead>
+      <tr>
+        <th>Trainingsplan</th>
+        <th>Datum</th>
+        <th>Dauer</th>
+        <th>Muskelgruppen</th>
+        <th>Notiz</th>
+      </tr>
+      </thead>
+      <tbody id="diaryBody"></tbody>
+    </table>
+    <div id="emptyState" class="empty">Noch keine Einträge.</div>
+  </section>
+</main>
+
+<script src='tagebuch.js'></script>
+</body>
+</html>

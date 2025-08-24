@@ -1,0 +1,110 @@
+(function () {
+    const sidemenu = document.getElementById("sidemenu");
+    if (!sidemenu) return;
+
+    function openmenu() { sidemenu.style.right = "0"; document.body.style.overflow = "hidden"; }
+    function closemenu() { sidemenu.style.right = "-240px"; document.body.style.overflow = ""; }
+
+    window.openmenu = openmenu; window.closemenu = closemenu;
+
+    const mq = window.matchMedia("(min-width: 768px)");
+    const handle = e => {
+        if (e.matches){ sidemenu.style.right = "auto"; document.body.style.overflow = ""; }
+        else { sidemenu.style.right = "-240px"; }
+    };
+    handle(mq); mq.addEventListener("change", handle);
+})();
+
+const STORAGE_KEY = "diaryEntries_v1";
+
+function readEntries(){
+    try {
+        const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (Array.isArray(parsed)) return parsed;
+    } catch {}
+    return [];
+}
+function writeEntries(list){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch {}
+}
+function formatDate(d){ // yyyy-mm-dd -> dd.mm.yyyy
+    if (!d || d.length<10) return d || "";
+    const [y,m,day] = d.split("-");
+    return `${day}.${m}.${y}`;
+}
+function unique(arr){ return [...new Set(arr)]; }
+
+const bodyEl = document.getElementById("diaryBody");
+const emptyEl = document.getElementById("emptyState");
+const dateFrom = document.getElementById("dateFrom");
+const dateTo   = document.getElementById("dateTo");
+const planSelect   = document.getElementById("planSelect");
+const muscleSelect = document.getElementById("muscleSelect");
+const resetBtn = document.getElementById("resetBtn");
+
+let allEntries = readEntries();
+
+function populateFilters(){
+    const plans = unique(allEntries.map(e => e.plan).filter(Boolean)).sort((a,b)=>a.localeCompare(b));
+    for (const p of plans){
+        const opt = document.createElement("option");
+        opt.value = p; opt.textContent = p;
+        planSelect.appendChild(opt);
+    }
+    const muscles = unique(allEntries.flatMap(e => e.muscles || [])).sort((a,b)=>a.localeCompare(b));
+    for (const m of muscles){
+        const opt = document.createElement("option");
+        opt.value = m; opt.textContent = m;
+        muscleSelect.appendChild(opt);
+    }
+}
+function passFilters(e){
+    if (dateFrom.value && e.date < dateFrom.value) return false;
+    if (dateTo.value && e.date > dateTo.value) return false;
+    if (planSelect.value && e.plan !== planSelect.value) return false;
+    if (muscleSelect.value && !(e.muscles || []).includes(muscleSelect.value)) return false;
+    return true;
+}
+
+function render(){
+    bodyEl.innerHTML = "";
+    const list = allEntries.filter(passFilters).sort((a,b)=> b.date.localeCompare(a.date));
+
+    emptyEl.style.display = list.length ? "none" : "block";
+    for (const e of list){
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+      <td>${e.plan || "—"}</td>
+      <td>${formatDate(e.date)}</td>
+      <td>${e.durationMin ? `${e.durationMin} min` : "—"}</td>
+      <td>${(e.muscles || []).join(", ") || "—"}</td>
+      <td>${e.note || ""}</td>
+    `;
+        tr.addEventListener("click", () => {
+            window.location.href = `detail.html?id=${encodeURIComponent(e.id)}`;
+        });
+        bodyEl.appendChild(tr);
+    }
+}
+
+[dateFrom, dateTo, planSelect, muscleSelect].forEach(el => {
+    el.addEventListener("input", render);
+    el.addEventListener("change", render);
+});
+resetBtn.addEventListener("click", () => {
+    dateFrom.value = ""; dateTo.value = ""; planSelect.value = ""; muscleSelect.value = "";
+    render();
+});
+
+populateFilters();
+render();
+
+window.addEventListener("storage", (ev) => {
+    if (ev.key === STORAGE_KEY) {
+        allEntries = readEntries();
+        // Filter-Dropdowns neu bauen (einfacher Weg: reset + neu)
+        planSelect.length = 1; muscleSelect.length = 1; // lässt "Alle" stehen
+        populateFilters();
+        render();
+    }
+});

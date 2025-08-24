@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Geräte und Übungen</title>
+  <link rel="stylesheet" href='geraete_uebungen.css' />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/5734caa0fc.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header id="header">
+  <div class="container">
+    <nav>
+      <img src="../../assets/logo.png" alt="logo" class="logo" />
+      <ul id="sidemenu">
+        <li><a href='../homepage/index.html'>Home</a></li>
+        <li><a href='../trainingsplan/index.html'>Trainingspläne</a></li>
+        <li><a href='../tagebuch/index.html'>Tagebuch</a></li>
+        <li><a href="./index.html">Geräte und Übungen</a></li>
+        <i class="fas fa-times" onclick="closemenu()"></i>
+      </ul>
+      <i class="fas fa-bars" onclick="openmenu()"></i>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h1 class="page-title">Geräte und Übungen</h1>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Übung suchen..." />
+  </div>
+
+  <section class="cards-container" id="cardsContainer">
+  </section>
+</main>
+
+<script src='geraete_uebungen.js'></script>
+</body>
+</html>
