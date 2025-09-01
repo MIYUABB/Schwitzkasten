@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Übung – Erklärung</title>
-  <link rel="stylesheet" href="uebung_erklaerung.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Übung Erklärung</title>
+  <link rel="stylesheet" href="uebung_erklaerung.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"/>
   <script src="https://kit.fontawesome.com/5734caa0fc.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-<!-- Navigation -->
 <div id="header">
   <div class="container">
     <nav>
-      <img src="../assets/logo.png" alt="logo" class="logo" />
+      <img src="../assets/logo.png" alt="Logo" class="logo"/>
       <ul id="sidemenu">
         <li><a href="../homepage/index.html">Home</a></li>
         <li><a href="../trainingsplan/index.html">Trainingspläne</a></li>
@@ -27,39 +25,27 @@
   </div>
 </div>
 
-<h1 class="title">Übung XY</h1>
+<main class="u-wrap">
+  <h1 class="title" id="u_name"></h1>
 
-<div class="main-content">
-  <div class="left-box">
-    <img src="../assets/uebung_demo.png" alt="Übung" class="uebung-bild"/>
-    <p class="muskel-label">Fokussierte Muskelgruppe</p>
-  </div>
+  <section class="u-main">
+    <div class="u-media" id="u_media"></div>
 
-  <div class="right-box">
-    <h2>Kurze Beschreibung</h2>
-    <p>Dies ist eine detaillierte Beschreibung der Übung, inklusive Durchführungshinweisen, Haltung, Tipps usw.</p>
-    <div class="location">
-      <i class="fa-solid fa-location-dot"></i> Ort: Fitnessraum A
+    <div class="u-content">
+      <div class="u-meta">
+        <div class="u-chip"><span>Muskelgruppe</span><strong id="u_muskel"></strong></div>
+        <div class="u-loc" id="u_loc"><i class="fa-solid fa-location-dot"></i><span id="u_ort"></span></div>
+      </div>
+
+      <section id="u_sections" class="u-sections"></section>
     </div>
-  </div>
-</div>
-
-<div class="video-section">
-  <video controls width="100%">
-    <source src="../assets/uebung_demo.mp4" type="video/mp4" />
-    Dein Browser unterstützt kein Video.
-  </video>
-</div>
+  </section>
+</main>
 
 <script>
-  function openmenu() {
-    document.getElementById("sidemenu").style.right = "0";
-  }
-
-  function closemenu() {
-    document.getElementById("sidemenu").style.right = "-200px";
-  }
+  function openmenu(){ document.getElementById("sidemenu").style.right="0"; }
+  function closemenu(){ document.getElementById("sidemenu").style.right="-200px"; }
 </script>
-
+<script type="module" src="../js/uebung_static.js"></script>
 </body>
 </html>

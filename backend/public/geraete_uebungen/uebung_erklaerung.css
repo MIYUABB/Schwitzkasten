@@ -1,3 +1,4 @@
+/* dein bestehendes styling unverändert */
 * {
     margin: 0;
     padding: 0;
@@ -75,7 +76,9 @@ nav .fas {
     color: #00B5E2;
 }
 
-.main-content {
+/* bild links, beschreibung rechts – mobil untereinander */
+.main-content,
+.u-main {
     display: flex;
     gap: 30px;
     margin: 20px auto;
@@ -83,7 +86,9 @@ nav .fas {
     flex-wrap: wrap;
 }
 
-.left-box {
+/* linke box bzw. medien-container */
+.left-box,
+.u-media {
     flex: 1;
     background-color: #1e1e1e;
     padding: 20px;
@@ -91,19 +96,30 @@ nav .fas {
     text-align: center;
 }
 
-.uebung-bild {
+.uebung-bild,
+.u-media img,
+.u-media video {
     width: 100%;
     border-radius: 10px;
+    height: auto;
+    display: block;
+    background: black;
 }
 
+/* muskelgruppe label */
 .muskel-label {
     font-size: 0.9rem;
     margin-top: 10px;
     color: #ccc;
 }
 
-.right-box {
+/* rechte spalte mit inhalt */
+.right-box,
+.u-content {
     flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
 .right-box h2 {
@@ -117,14 +133,69 @@ nav .fas {
     margin-bottom: 10px;
 }
 
-.location {
+/* meta zeile: muskel-chip und ort */
+.u-meta {
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.u-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #1e1e1e;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    color: #ccc;
+    border: 1px solid #1e1e1e;
+}
+
+.u-chip strong { color: white; }
+
+.location,
+.u-loc {
+    display: inline-flex;
     align-items: center;
     gap: 6px;
     font-size: 1rem;
     color: white;
 }
 
+/* dynamische abschnitte aus uebung_static.js */
+.u-sections {
+    display: grid;
+    gap: 12px;
+}
+
+.u-item {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.u-item h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+    color: #00B5E2;
+    font-weight: 500;
+}
+
+.u-item p {
+    margin: 0;
+    line-height: 1.7;
+    color: white;
+}
+
+.u-item ul {
+    margin: 6px 0 0 18px;
+    line-height: 1.7;
+    color: white;
+}
+
+/* video bereich unten – optional, falls genutzt */
 .video-section {
     background-color: #1e1e1e;
     border-radius: 20px;
