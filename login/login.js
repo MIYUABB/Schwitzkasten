@@ -5,7 +5,15 @@ function handleLogin(event) {
 
     if (email && password) {
         const domain = email.split("@")[1]?.toLowerCase();
-        const role = domain === "ksh.ch" ? "lehrer" : "schueler";
+        let role;
+        if (domain === "ksh.ch") {
+            role = "lehrer";
+        } else if (domain === "student.ksh.ch") {
+            role = "schueler";
+        } else {
+            alert("Unbekannte E-Mail-Domain.");
+            return false;
+        }
         try {
             localStorage.setItem("rolle", role);
         } catch {}
