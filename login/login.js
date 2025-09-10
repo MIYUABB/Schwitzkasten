@@ -4,6 +4,10 @@ function handleLogin(event) {
     const password = document.getElementById("loginPassword").value;
 
     if (email && password) {
+        const role = /lehrer|teacher/i.test(email) ? "lehrer" : "schueler";
+        try {
+            localStorage.setItem("rolle", role);
+        } catch {}
         window.location.href = "../homepage/index.html"; // Zielseite anpassen
     } else {
         alert("Bitte gültige Zugangsdaten eingeben.");
