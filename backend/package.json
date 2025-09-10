@@ -2,12 +2,13 @@
   "name": "mein-nextjs-backend",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "node --loader ts-node/esm --test"
+    "test": "node --test"
   },
   "dependencies": {
     "next": "15.2.4",
@@ -23,7 +24,6 @@
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
-    "@eslint/eslintrc": "^3",
-    "ts-node": "^10.9.1"
+    "@eslint/eslintrc": "^3"
   }
 }

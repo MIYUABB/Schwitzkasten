@@ -1,7 +1,7 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
-import { bearer } from "./http";
+import { bearer } from "./http.js";
 
 describe("bearer", () => {
     it("extracts token from Authorization header", () => {
