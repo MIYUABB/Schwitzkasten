@@ -4,6 +4,11 @@ function handleLogin(event) {
     const password = document.getElementById("loginPassword").value;
 
     if (email && password) {
+        const domain = email.split("@")[1]?.toLowerCase();
+        const role = domain === "ksh.ch" ? "lehrer" : "schueler";
+        try {
+            localStorage.setItem("rolle", role);
+        } catch {}
         window.location.href = "../homepage/index.html"; // Zielseite anpassen
     } else {
         alert("Bitte gültige Zugangsdaten eingeben.");
