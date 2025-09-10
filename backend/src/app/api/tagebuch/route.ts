@@ -1,15 +1,9 @@
-import { NextResponse } from "next/server";
-import { supabaseForToken } from "@/src/lib/supabaseClient";
-
-async function getUserToken(req: Request) {
-    const auth = req.headers.get("authorization") || "";
-    const token = auth.startsWith("Bearer ") ? auth.slice(7) : undefined;
-    return token;
-}
+import { supabaseForToken } from "@/lib/supabaseClient";
+import { send, bearer } from "@/lib/http";
 
 export async function GET(req: Request) {
-    const token = await getUserToken(req);
-    if (!token) return NextResponse.json({ error: "Kein Token" }, { status: 401 });
+    const token = bearer(req);
+    if (!token) return send({ error: "Kein Token" }, 401);
 
     const sb = supabaseForToken(token);
     const url = new URL(req.url);
@@ -21,17 +15,17 @@ export async function GET(req: Request) {
     if (to) q = q.lte("datum", to);
 
     const { data, error } = await q;
-    if (error) return NextResponse.json({ error: error.message }, { status: 400 });
-    return NextResponse.json(data);
+    if (error) return send({ error: error.message }, 400);
+    return send(data);
 }
 
 export async function POST(req: Request) {
-    const token = await getUserToken(req);
-    if (!token) return NextResponse.json({ error: "Kein Token" }, { status: 401 });
-    const sb = supabaseForToken(token);
+    const token = bearer(req);
+    if (!token) return send({ error: "Kein Token" }, 401);
 
+    const sb = supabaseForToken(token);
     const { data: u } = await sb.auth.getUser();
-    if (!u?.user) return NextResponse.json({ error: "Kein User" }, { status: 401 });
+    if (!u?.user) return send({ error: "Kein User" }, 401);
 
     const body = await req.json().catch(() => ({}));
     const payload = { ...body, user_id: u.user.id };
@@ -42,6 +36,6 @@ export async function POST(req: Request) {
         .select("*")
         .single();
 
-    if (error) return NextResponse.json({ error: error.message }, { status: 400 });
-    return NextResponse.json(data, { status: 201 });
+    if (error) return send({ error: error.message }, 400);
+    return send(data, 201);
 }

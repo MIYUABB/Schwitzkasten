@@ -1,15 +1,16 @@
-import { NextResponse } from "next/server";
-import { supabaseForToken } from "@/src/lib/supabaseClient";
+import { supabaseForToken } from "@/lib/supabaseClient";
+import { send, bearer } from "@/lib/http";
 
 export async function GET(req: Request) {
-    const url = new URL(req.url);
-    const type = url.searchParams.get("type"); // mit_gewicht | ohne_gewicht
+    const token = bearer(req);
+    if (!token) return send({ error: "Kein Token" }, 401);
 
-    const sb = supabaseForToken();
-    let q = sb.from("uebungen").select("*").order("name", { ascending: true });
-    if (type) q = q.eq("typ", type);
+    const sb = supabaseForToken(token);
+    const { data, error } = await sb
+        .from("uebungen")
+        .select("id,name,zielmuskulatur")
+        .order("name", { ascending: true });
 
-    const { data, error } = await q;
-    if (error) return NextResponse.json({ error: error.message }, { status: 400 });
-    return NextResponse.json(data);
+    if (error) return send({ error: error.message }, 400);
+    return send(data);
 }
