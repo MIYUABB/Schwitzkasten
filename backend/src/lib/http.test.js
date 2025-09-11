@@ -33,4 +33,3 @@ describe("send", () => {
         assert.deepEqual(await res.json(), { ok: true });
     });
 });
-
