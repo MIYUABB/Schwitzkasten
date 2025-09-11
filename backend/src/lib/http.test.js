@@ -1,7 +1,7 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
-import { bearer } from "./http.js";
+import { bearer, send } from "./http.js";
 
 describe("bearer", () => {
     it("extracts token from Authorization header", () => {
@@ -22,6 +22,15 @@ describe("bearer", () => {
             headers: { authorization: "Bearer" },
         });
         assert.equal(bearer(req), undefined);
+    });
+});
+
+describe("send", () => {
+    it("returns response with JSON body and status", async () => {
+        const res = send({ ok: true }, 201);
+        assert.equal(res.status, 201);
+        assert.equal(res.headers.get("content-type"), "application/json; charset=utf-8");
+        assert.deepEqual(await res.json(), { ok: true });
     });
 });
 
