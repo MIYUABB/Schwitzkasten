@@ -1,3 +1,4 @@
+// API route handling student data retrieval and approval updates
 // API route for fetching and updating student data
 
 import { createClient } from '@supabase/supabase-js';

@@ -9,5 +9,6 @@ export function send(body, status = 200, headers = JSON_HEADERS) {
 
 export function bearer(req) {
     const auth = req.headers.get("authorization") || "";
+    return auth.toLowerCase().startsWith("bearer ") ? auth.slice(7) : undefined;
     return auth.startsWith("Bearer ") ? auth.slice(7) : undefined;
 }
