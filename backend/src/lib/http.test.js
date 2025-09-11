@@ -1,5 +1,7 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
+import { bearer, send } from "./http.js";
 import { bearer, send } from "./http.js";
 import { bearer } from "./http.js";
 
@@ -41,4 +43,3 @@ describe("send", () => {
         assert.deepEqual(await res.json(), { ok: true });
     });
 });
-
