@@ -1,4 +1,4 @@
-// /app/api/lehrer/verhaltensvereinbarung/route.ts
+// API route handling student data retrieval and approval updates
 
 import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';

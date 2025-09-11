@@ -34,18 +34,26 @@
     mq.addEventListener("change", handleMQ);
 })();
 
-const plaene = [
-    { title: "Ganzkörper – Anfänger", meta: "3 Tage | 45–60 min", href: "detail.html" },
-    { title: "Push/Pull/Legs",        meta: "6 Tage | 60–75 min", href: "detail.html" },
-    { title: "Ober-/Unterkörper",     meta: "4 Tage | 50–70 min", href: "detail.html" },
-    { title: "Hypertrophie Split",    meta: "5 Tage | 60–80 min", href: "detail.html" },
-    { title: "Kraft 5x5",             meta: "3 Tage | 45–70 min", href: "detail.html" },
-];
+const PLANS_KEY = "trainingPlans_v1";
+
+function getPlans() {
+    try {
+        return JSON.parse(localStorage.getItem(PLANS_KEY)) || [];
+    } catch {
+        return [];
+    }
+}
+
+let plaene = getPlans();
 
 function createPlanCard(plan) {
     const a = document.createElement("a");
     a.className = "plan-card";
-    a.href = plan.href;
+    a.href = "#";
+    a.addEventListener("click", (e) => {
+        e.preventDefault();
+        startPlan(plan.id);
+    });
 
     const icon = document.createElement("div");
     icon.className = "icon";
@@ -60,7 +68,7 @@ function createPlanCard(plan) {
 
     const meta = document.createElement("div");
     meta.className = "meta";
-    meta.textContent = plan.meta;
+    meta.textContent = plan.description || "";
 
     content.appendChild(title);
     content.appendChild(meta);
@@ -73,9 +81,29 @@ function createPlanCard(plan) {
 function renderPlans(list) {
     const grid = document.getElementById("plansGrid");
     grid.innerHTML = "";
+    if (list.length === 0) {
+        const p = document.createElement("p");
+        p.textContent = "Noch keine Trainingspläne vorhanden.";
+        grid.appendChild(p);
+        return;
+    }
     list.forEach(p => grid.appendChild(createPlanCard(p)));
 }
 renderPlans(plaene);
+
+const rolle = localStorage.getItem('rolle') || 'schueler';
+if (rolle === 'lehrer') {
+    const container = document.querySelector('.search-container');
+    if (container) {
+        const btn = document.createElement('button');
+        btn.id = 'managePlansBtn';
+        btn.textContent = 'Trainingspläne verwalten';
+        btn.addEventListener('click', () => {
+            location.href = '../trainingsplaene_verwalten/index.html';
+        });
+        container.appendChild(btn);
+    }
+}
 
 // Suche
 const search = document.getElementById("searchPlans");
@@ -85,4 +113,28 @@ if (search) {
         const filtered = plaene.filter(p => p.title.toLowerCase().includes(q));
         renderPlans(filtered);
     });
+}
+
+function startPlan(id) {
+    const plan = plaene.find(p => p.id === id);
+    if (!plan) return;
+
+    localStorage.setItem("currentPlanName", plan.title);
+    localStorage.setItem("currentPlanExercises", JSON.stringify(plan.exercises.map(e => e.key)));
+    localStorage.setItem("currentTrainingStart", String(Date.now()));
+
+    const shared = {};
+    for (const ex of plan.exercises) {
+        const base = window.UEBUNGEN_DB?.[ex.key] || { key: ex.key, gif: "../../assets/platzhalter.gif", beschreibung: "", muskelgruppe: "", standort: "" };
+        shared[ex.key] = {
+            name: base.key || ex.key,
+            muskelgruppe: base.muskelgruppe || "",
+            beschreibung: base.beschreibung || "",
+            standort: base.standort || "",
+            gif: base.gif || "../../assets/platzhalter.gif",
+            vorgabe: { saetze: ex.sets, whd: ex.reps }
+        };
+    }
+    localStorage.setItem("sharedExercisesDB", JSON.stringify(shared));
+    window.location.href = "uebung.html";
 }
