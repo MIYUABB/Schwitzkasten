@@ -12,13 +12,17 @@
     handle(mq); mq.addEventListener("change", handle);
 })();
 
-const STORAGE_KEY = "diaryEntries_v1";
-function readEntries(){
-    try {
-        const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY));
-        if (Array.isArray(parsed)) return parsed;
-    } catch {}
-    return [];
+const API_BASE = "/api";
+async function fetchEntries(){
+    try{
+        const token = localStorage.getItem('token')||'';
+        const res = await fetch(`${API_BASE}/tagebuch`, { headers: token?{Authorization:`Bearer ${token}`}:{}});
+        if(!res.ok) throw new Error();
+        const data = await res.json();
+        return Array.isArray(data)?data:[];
+    }catch{
+        return [];
+    }
 }
 function getParam(name){
     const url = new URL(window.location.href);
@@ -31,8 +35,6 @@ function formatDate(d){
 }
 
 const entryId = getParam("id");
-const entries = readEntries();
-const entry = entries.find(e => e.id === entryId);
 
 const metaRoot = document.getElementById("metaCards");
 const tbody = document.getElementById("detailBody");
@@ -44,11 +46,14 @@ function addMeta(label, value){
     div.innerHTML = `<span class="label">${label}</span><span class="value">${value || "—"}</span>`;
     metaRoot.appendChild(div);
 }
-
-if (!entry){
-    document.querySelector(".page-title").textContent = "Eintrag nicht gefunden";
-    emptyEl.style.display = "block";
-} else {
+async function init(){
+    const entries = await fetchEntries();
+    const entry = entries.find(e => e.id === entryId);
+    if (!entry){
+        document.querySelector(".page-title").textContent = "Eintrag nicht gefunden";
+        emptyEl.style.display = "block";
+        return;
+    }
     document.querySelector(".page-title").textContent = `Tagebuch – ${entry.plan}`;
     addMeta("Trainingsplan", entry.plan);
     addMeta("Datum", formatDate(entry.date));
@@ -88,3 +93,4 @@ if (!entry){
         });
     }
 }
+init();
