@@ -1,4 +1,4 @@
-// API route for fetching and updating student data
+// API route handling student data retrieval and approval updates
 
 import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';

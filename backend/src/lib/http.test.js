@@ -12,6 +12,14 @@ describe("bearer", () => {
         assert.equal(bearer(req), token);
     });
 
+    it("handles lowercase bearer prefix", () => {
+        const token = "abc123";
+        const req = new Request("http://example.com", {
+            headers: { authorization: `bearer ${token}` },
+        });
+        assert.equal(bearer(req), token);
+    });
+
     it("returns undefined when header is missing", () => {
         const req = new Request("http://example.com");
         assert.equal(bearer(req), undefined);
