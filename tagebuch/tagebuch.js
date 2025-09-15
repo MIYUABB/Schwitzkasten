@@ -15,18 +15,43 @@
     handle(mq); mq.addEventListener("change", handle);
 })();
 
-const STORAGE_KEY = "diaryEntries_v1";
+const API_BASE = "/api";
 
-function readEntries(){
-    try {
-        const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY));
-        if (Array.isArray(parsed)) return parsed;
-    } catch {}
-    return [];
+async function fetchEntries(){
+    try{
+        const token = localStorage.getItem('token') || '';
+        const res = await fetch(`${API_BASE}/tagebuch`, {
+            headers: token ? { Authorization: `Bearer ${token}` } : {}
+        });
+        if(!res.ok) throw new Error();
+        const data = await res.json();
+        return Array.isArray(data) ? data : [];
+    }catch{
+        return [];
+    }
 }
-function writeEntries(list){
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch {}
+async function createEntry(payload){
+    const token = localStorage.getItem('token') || '';
+    const res = await fetch(`${API_BASE}/tagebuch`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            ...(token?{Authorization:`Bearer ${token}`}:{})
+        },
+        body: JSON.stringify(payload)
+    });
+    if(!res.ok) throw new Error('Speichern fehlgeschlagen');
+    return await res.json();
 }
+async function deleteEntry(id){
+    const token = localStorage.getItem('token') || '';
+    const res = await fetch(`${API_BASE}/tagebuch?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+        headers: token?{Authorization:`Bearer ${token}`}:{}}
+    );
+    if(!res.ok) throw new Error('Löschen fehlgeschlagen');
+}
+
 function formatDate(d){ // yyyy-mm-dd -> dd.mm.yyyy
     if (!d || d.length<10) return d || "";
     const [y,m,day] = d.split("-");
@@ -41,10 +66,13 @@ const dateTo   = document.getElementById("dateTo");
 const planSelect   = document.getElementById("planSelect");
 const muscleSelect = document.getElementById("muscleSelect");
 const resetBtn = document.getElementById("resetBtn");
+const addBtn = document.getElementById("addBtn");
 
-let allEntries = readEntries();
+let allEntries = [];
 
 function populateFilters(){
+    planSelect.length = 1; // keep "Alle"
+    muscleSelect.length = 1;
     const plans = unique(allEntries.map(e => e.plan).filter(Boolean)).sort((a,b)=>a.localeCompare(b));
     for (const p of plans){
         const opt = document.createElement("option");
@@ -79,7 +107,17 @@ function render(){
       <td>${e.durationMin ? `${e.durationMin} min` : "—"}</td>
       <td>${(e.muscles || []).join(", ") || "—"}</td>
       <td>${e.note || ""}</td>
+      <td><button class="del-btn">Löschen</button></td>
     `;
+        tr.querySelector('.del-btn')?.addEventListener('click', async ev => {
+            ev.stopPropagation();
+            if(!confirm('Eintrag löschen?')) return;
+            try{
+                await deleteEntry(e.id);
+                allEntries = allEntries.filter(x=>x.id!==e.id);
+                render();
+            }catch(err){ alert(err.message||err); }
+        });
         tr.addEventListener("click", () => {
             window.location.href = `detail.html?id=${encodeURIComponent(e.id)}`;
         });
@@ -96,15 +134,22 @@ resetBtn.addEventListener("click", () => {
     render();
 });
 
-populateFilters();
-render();
-
-window.addEventListener("storage", (ev) => {
-    if (ev.key === STORAGE_KEY) {
-        allEntries = readEntries();
-        // Filter-Dropdowns neu bauen (einfacher Weg: reset + neu)
-        planSelect.length = 1; muscleSelect.length = 1; // lässt "Alle" stehen
+addBtn?.addEventListener('click', async () => {
+    const plan = prompt('Trainingsplan?') || '';
+    const date = prompt('Datum (YYYY-MM-DD)?');
+    if(!date) return;
+    const note = prompt('Notiz?') || '';
+    try{
+        const newEntry = await createEntry({ plan, date, note });
+        allEntries.unshift(newEntry);
         populateFilters();
         render();
-    }
+    }catch(err){ alert(err.message||err); }
 });
+
+async function init(){
+    allEntries = await fetchEntries();
+    populateFilters();
+    render();
+}
+init();
