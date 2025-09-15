@@ -8,25 +8,24 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-
-    "test": "node --test",
     "test": "node --loader ts-node/esm --test"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.49.3",
     "next": "15.2.4",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "@supabase/supabase-js": "^2.49.3",
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "tailwindcss": "^4",
+    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "19.1.12",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
-    "@eslint/eslintrc": "^3",
-    "ts-node": "^10.9.1"
+    "tailwindcss": "^4",
+    "ts-node": "^10.9.1",
+    "typescript": "^5"
   }
 }
