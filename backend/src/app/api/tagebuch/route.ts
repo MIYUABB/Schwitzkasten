@@ -39,3 +39,17 @@ export async function POST(req: Request) {
     if (error) return send({ error: error.message }, 400);
     return send(data, 201);
 }
+
+export async function DELETE(req: Request) {
+    const token = bearer(req);
+    if (!token) return send({ error: "Kein Token" }, 401);
+
+    const sb = supabaseForToken(token);
+    const url = new URL(req.url);
+    const id = url.searchParams.get("id");
+    if (!id) return send({ error: "ID fehlt" }, 400);
+
+    const { error } = await sb.from("tagebuch_entries").delete().eq("id", id);
+    if (error) return send({ error: error.message }, 400);
+    return send({ success: true });
+}

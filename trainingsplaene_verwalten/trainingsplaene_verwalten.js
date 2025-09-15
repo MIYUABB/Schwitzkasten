@@ -53,6 +53,7 @@ function initListPage(){
         <p class="plan-meta"><b>Übungen:</b> ${p.exercises.map(e => `${e.key} (${e.sets}×${e.reps})`).join(", ")}</p>
         <div class="card-actions">
           <button class="btn-accent" data-action="start" data-id="${p.id}"><i class="fas fa-play"></i> Plan starten</button>
+          <button class="ghost-btn" data-action="edit" data-id="${p.id}"><i class="fas fa-edit"></i> Bearbeiten</button>
           <button class="ghost-btn" data-action="delete" data-id="${p.id}"><i class="fas fa-trash"></i> Löschen</button>
         </div>
       `;
@@ -62,6 +63,9 @@ function initListPage(){
 
         listRoot.querySelectorAll("[data-action='start']").forEach(btn => {
             btn.addEventListener("click", () => startPlan(btn.getAttribute("data-id")));
+        });
+        listRoot.querySelectorAll("[data-action='edit']").forEach(btn => {
+            btn.addEventListener("click", () => editPlan(btn.getAttribute("data-id")));
         });
         listRoot.querySelectorAll("[data-action='delete']").forEach(btn => {
             btn.addEventListener("click", () => deletePlan(btn.getAttribute("data-id")));
@@ -102,6 +106,10 @@ function initListPage(){
 
         window.location.href = "../trainingsplan/uebung.html";
     }
+
+    function editPlan(id){
+        window.location.href = `erstellen.html?id=${id}`;
+    }
 }
 
 
@@ -110,9 +118,28 @@ function initCreatePage(){
     const list = document.getElementById("exerciseList");
     const addBtn = document.getElementById("addExerciseBtn");
 
-    addExerciseRow();
+    const params = new URLSearchParams(location.search);
+    const editId = params.get("id");
+    let editing = null;
 
-    addBtn.addEventListener("click", addExerciseRow);
+    if (editId){
+        const plan = getPlans().find(p => p.id === editId);
+        if (plan){
+            editing = plan;
+            document.querySelector('.page-title').textContent = 'Trainingsplan bearbeiten';
+            form.querySelector('button[type="submit"]').innerHTML = '<i class="fas fa-save"></i> Plan aktualisieren';
+            document.getElementById('planTitle').value = plan.title;
+            document.getElementById('planDesc').value = plan.description || '';
+            document.getElementById('planMuscles').value = plan.muscles?.join(', ') || '';
+            plan.exercises.forEach(ex => addExerciseRow(ex));
+        } else {
+            addExerciseRow();
+        }
+    } else {
+        addExerciseRow();
+    }
+
+    addBtn.addEventListener("click", () => addExerciseRow());
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -146,19 +173,24 @@ function initCreatePage(){
         }
 
         const plan = {
-            id: uid(),
+            id: editing ? editing.id : uid(),
             title, description, muscles, exercises,
-            createdAt: new Date().toISOString()
+            createdAt: editing ? editing.createdAt : new Date().toISOString()
         };
 
         const plans = getPlans();
-        plans.push(plan);
+        if (editing){
+            const idx = plans.findIndex(p => p.id === editing.id);
+            if (idx !== -1) plans[idx] = plan;
+        } else {
+            plans.push(plan);
+        }
         savePlans(plans);
 
         window.location.href = "index.html";
     });
 
-    function addExerciseRow(){
+    function addExerciseRow(prefill){
         const row = document.createElement("div");
         row.className = "exercise-row";
 
@@ -186,10 +218,10 @@ function initCreatePage(){
         });
 
         const sets = document.createElement("input");
-        sets.type = "number"; sets.min = "1"; sets.name = "exSets"; sets.placeholder = "Sätze"; sets.value = "3";
+        sets.type = "number"; sets.min = "1"; sets.name = "exSets"; sets.placeholder = "Sätze"; sets.value = prefill?.sets || "3";
 
         const reps = document.createElement("input");
-        reps.type = "number"; reps.min = "1"; reps.name = "exReps"; reps.placeholder = "Wdh."; reps.value = "10";
+        reps.type = "number"; reps.min = "1"; reps.name = "exReps"; reps.placeholder = "Wdh."; reps.value = prefill?.reps || "10";
 
         const remove = document.createElement("button");
         remove.type = "button"; remove.className = "remove"; remove.textContent = "Entfernen";
@@ -202,6 +234,9 @@ function initCreatePage(){
         row.appendChild(remove);
         list.appendChild(row);
 
+        if (prefill) {
+            name.value = prefill.key;
+        }
         name.dispatchEvent(new Event("input"));
     }
 }
