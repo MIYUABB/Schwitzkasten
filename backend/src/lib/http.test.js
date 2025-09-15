@@ -22,6 +22,14 @@ describe("bearer", () => {
         assert.equal(bearer(req), token);
     });
 
+    it("trims extra spaces around token", () => {
+        const token = "abc123";
+        const req = new Request("http://example.com", {
+            headers: { authorization: `Bearer   ${token}   ` },
+        });
+        assert.equal(bearer(req), token);
+    });
+
     it("returns undefined when header is missing", () => {
         const req = new Request("http://example.com");
         assert.equal(bearer(req), undefined);

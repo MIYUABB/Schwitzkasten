@@ -1,3 +1,4 @@
+// API route for GET and PATCH requests retrieving students and updating their approval status
 // API route handling student data retrieval and approval updates
 // API route for fetching and updating student data
 
