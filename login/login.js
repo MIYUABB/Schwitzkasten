@@ -1,5 +1,6 @@
 function handleLogin(event) {
     event.preventDefault();
+    const email = document.getElementById("loginEmail").value.trim().toLowerCase();
     const email = document.getElementById("loginEmail").value.toLowerCase();
     const password = document.getElementById("loginPassword").value;
 
@@ -8,6 +9,7 @@ function handleLogin(event) {
         return false;
     }
 
+    const [localPart, domain] = email.split("@");
     const accounts = JSON.parse(localStorage.getItem("accounts") || "{}");
     const account = accounts[email];
     if (!account || account.password !== password) {
@@ -21,6 +23,28 @@ function handleLogin(event) {
         return false;
     }
 
+    const accounts = JSON.parse(localStorage.getItem("accounts") || "{}");
+    let account = accounts[email];
+
+    if (!account) {
+        const nameParts = localPart.split(".");
+        if (nameParts.length !== 2) {
+            alert("E-Mail muss das Format vorname.nachname@ksh.ch besitzen.");
+            return false;
+        }
+        const rolle = domain === "ksh.ch" ? "lehrer" : "schueler";
+        account = {
+            password,
+            rolle,
+            vorname: capitalize(nameParts[0]),
+            nachname: capitalize(nameParts[1]),
+        };
+        accounts[email] = account;
+        try {
+            localStorage.setItem("accounts", JSON.stringify(accounts));
+        } catch {}
+    } else if (account.password !== password) {
+        alert("Ungültige Zugangsdaten oder Benutzer nicht registriert.");
     try {
         localStorage.setItem("rolle", account.rolle);
         localStorage.setItem("vorname", account.vorname);
@@ -68,6 +92,9 @@ function handleLogin(event) {
     }
 
     try {
+        localStorage.setItem("rolle", account.rolle);
+        localStorage.setItem("vorname", account.vorname);
+        localStorage.setItem("nachname", account.nachname);
         localStorage.setItem("rolle", role);
     } catch {}
 
@@ -75,6 +102,9 @@ function handleLogin(event) {
     return false;
 }
 
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
 function handleRegister(event) {
     event.preventDefault();
 
